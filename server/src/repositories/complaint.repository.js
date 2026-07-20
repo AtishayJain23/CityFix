@@ -24,9 +24,14 @@ const update = async (complaint, updateData) => {
   return await complaint.save();
 };
 
+const deleteComplaint = async (complaint) => {
+  return await complaint.deleteOne();
+};
+
 module.exports = {
   create,
   findByCreatedBy,
   findById,
   update,
+  deleteComplaint,
 };

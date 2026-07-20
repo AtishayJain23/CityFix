@@ -92,9 +92,29 @@ const updateComplaint = async (req, res) => {
   }
 };
 
+const deleteComplaint = async (req, res) => {
+  try {
+    await complaintService.deleteComplaint(
+      req.params.id,
+      req.user._id
+    );
+
+    res.status(200).json({
+      success: true,
+      message: "Complaint deleted successfully",
+    });
+  } catch (error) {
+    res.status(400).json({
+      success: false,
+      message: error.message,
+    });
+  }
+};
+
 module.exports = {
   createComplaint,
   getMyComplaints,
   getComplaintById,
   updateComplaint,
+  deleteComplaint,
 };

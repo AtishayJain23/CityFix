@@ -1,4 +1,5 @@
 const complaintRepository = require("../repositories/complaint.repository");
+const deleteFromCloudinary = require("../utils/deleteFromCloudinary");
 //console.log(complaintRepository);
 const createComplaint = async (complaintData) => {
   const { latitude, longitude, ...rest } = complaintData;
@@ -63,9 +64,33 @@ const updateComplaint = async (complaintId, userId, updateData) => {
   return await complaintRepository.update(complaint, filteredData);
 };
 
+const deleteComplaint = async (complaintId, userId) => {
+  const complaint = await complaintRepository.findById(complaintId);
+
+  if (!complaint) {
+    throw new Error("Complaint not found");
+  }
+
+  if (!complaint.createdBy.equals(userId)) {
+    throw new Error("Unauthorized");
+  }
+
+  if (complaint.status !== "Open") {
+    throw new Error("Only open complaints can be deleted");
+  }
+
+  // Delete all uploaded images
+  for (const photo of complaint.photos) {
+    await deleteFromCloudinary(photo.publicId);
+  }
+
+  await complaintRepository.deleteComplaint(complaint);
+};
+
 module.exports = {
   createComplaint,
   getMyComplaints,
   getComplaintById,
   updateComplaint,
+  deleteComplaint,
 };

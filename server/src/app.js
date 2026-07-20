@@ -3,6 +3,8 @@ const cors = require("cors");
 const cookieParser = require("cookie-parser");
 const authRoutes = require("./routes/auth.routes");
 const complaintRoutes = require("./routes/complaint.routes");
+const adminRoutes = require("./routes/admin.routes");
+const employeeRoutes = require("./routes/employee.routes");
 
 const app = express();
 
@@ -23,8 +25,9 @@ app.get("/", (req, res) => {
 
 app.use("/api/auth", authRoutes);
 app.use("/api/complaints", complaintRoutes);
+app.use("/api/admin", adminRoutes);
+app.use("/api/employee", employeeRoutes);
 app.use((err, req, res, next) => {
-
   res.status(500).json({
     success: false,
     message: err.message,
