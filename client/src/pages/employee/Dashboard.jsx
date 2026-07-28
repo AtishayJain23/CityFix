@@ -1,5 +1,14 @@
-const Login = () => {
-  return <h1>Employee dash</h1>;
+import MainLayout from "../../components/layout/MainLayout";
+//import Navbar from "../../components/layout/Navbar";
+
+const Dashboard = () => {
+  return (
+    <>
+      <MainLayout />
+
+      <h1>Employee Dashboard</h1>
+    </>
+  );
 };
 
-export default Login;
+export default Dashboard;

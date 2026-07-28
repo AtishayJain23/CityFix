@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
+import Button from "../../components/ui/Button";
+import Input from "../../components/ui/Input";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -59,7 +61,8 @@ const Login = () => {
           <label>Email</label>
           <br />
 
-          <input
+          <Input
+            label="Email"
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
@@ -72,7 +75,8 @@ const Login = () => {
           <label>Password</label>
           <br />
 
-          <input
+          <Input
+            label="Password"
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
@@ -81,9 +85,9 @@ const Login = () => {
 
         <br />
 
-        <button type="submit" disabled={loading}>
+        <Button type="submit" disabled={loading}>
           {loading ? "Logging in..." : "Login"}
-        </button>
+        </Button>
       </form>
     </div>
   );

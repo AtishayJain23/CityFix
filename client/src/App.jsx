@@ -8,6 +8,7 @@ import AdminDashboard from "./pages/admin/Dashboard";
 import EmployeeDashboard from "./pages/employee/Dashboard";
 import ProtectedRoute from "./components/ProtectedRoute";
 import RoleProtectedRoute from "./components/RoleProtectedRoute";
+import ComplaintDetails from "./pages/citizen/ComplaintDetails";
 function App() {
   return (
     <Routes>
@@ -41,7 +42,18 @@ function App() {
           </RoleProtectedRoute>
         }
       />
+
+      <Route
+        path="/complaints/:id"
+        element={
+          <RoleProtectedRoute allowedRoles={["citizen"]}>
+            <ComplaintDetails />
+          </RoleProtectedRoute>
+        }
+      />
+      
     </Routes>
+    
   );
 }
 
