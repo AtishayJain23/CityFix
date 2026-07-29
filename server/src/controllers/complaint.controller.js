@@ -1,20 +1,18 @@
 const complaintService = require("../services/complaint.service");
 const createComplaint = async (req, res) => {
   try {
-   
-
-    if (!req.files) {
+    if (!req.files || req.files.length === 0) {
       return res.status(400).json({
         success: false,
         message: "No files received",
       });
     }
-  
+
     const photos = req.files.map((file) => ({
       url: file.path,
       publicId: file.filename,
     }));
-   
+
     const complaintData = {
       ...req.body,
       photos,
@@ -94,10 +92,7 @@ const updateComplaint = async (req, res) => {
 
 const deleteComplaint = async (req, res) => {
   try {
-    await complaintService.deleteComplaint(
-      req.params.id,
-      req.user._id
-    );
+    await complaintService.deleteComplaint(req.params.id, req.user._id);
 
     res.status(200).json({
       success: true,

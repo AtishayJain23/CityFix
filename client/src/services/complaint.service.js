@@ -7,3 +7,14 @@ export const getMyComplaints = () => {
 export const getComplaintById = (id) => {
   return api.get(`/complaints/${id}`);
 };
+
+
+
+export const createComplaint = async (formData) => {
+  const response = await api.post(
+    "/complaints",
+    formData
+  );
+
+  return response.data;
+};

@@ -32,11 +32,21 @@ export const ComplaintProvider = ({ children }) => {
   }
 };
 
+const createComplaint = async (formData) => {
+  const response =
+    await complaintService.createComplaint(
+      formData
+    );
+
+  return response.data;
+};
+
   const value = {
     complaints,
     loading,
     getMyComplaints,
     getComplaintById,
+    createComplaint,
   };
 
   return (

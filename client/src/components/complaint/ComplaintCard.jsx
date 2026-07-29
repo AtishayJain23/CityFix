@@ -12,7 +12,7 @@ const ComplaintCard = ({ complaint }) => {
       <p>
         <strong>Status:</strong> {complaint.status}
       </p>
-      console.log(complaints);
+      
       <Link
         to={`/complaints/${complaint._id}`}
         className="inline-block mt-4 text-blue-600 hover:underline"
