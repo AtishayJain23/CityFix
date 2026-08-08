@@ -88,13 +88,15 @@ const Login = () => {
         <Button type="submit" disabled={loading}>
           {loading ? "Logging in..." : "Login"}
         </Button>
+        <div className="mt-4 border-t pt-4 text-center">
+          <Link
+            to="/register"
+            className="text-blue-600 font-medium hover:underline"
+          >
+            Create New Account
+          </Link>
+        </div>
       </form>
-      <p className="mt-4 text-center">
-        Don't have an account?{" "}
-        <Link to="/register" className="text-blue-600 hover:underline">
-          Register
-        </Link>
-      </p>
     </div>
   );
 };
