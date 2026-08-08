@@ -13,7 +13,7 @@ export const AuthProvider = ({ children }) => {
       setLoading(true);
 
       const response = await authService.getMe();
-
+        console.log("ME SUCCESS", response.data);
      setUser(response.data.data);
     } catch (error) {
       setUser(null);
