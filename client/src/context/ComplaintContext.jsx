@@ -41,12 +41,38 @@ const createComplaint = async (formData) => {
   return response.data;
 };
 
+const updateComplaint = async (
+  id,
+  data
+) => {
+  const response =
+    await complaintService.updateComplaint(
+      id,
+      data
+    );
+
+  return response.data;
+};
+
+const deleteComplaint = async (
+  id
+) => {
+  const response =
+    await complaintService.deleteComplaint(
+      id
+    );
+
+  return response.data;
+};
+
   const value = {
     complaints,
     loading,
     getMyComplaints,
     getComplaintById,
     createComplaint,
+    updateComplaint,
+    deleteComplaint,
   };
 
   return (

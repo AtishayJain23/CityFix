@@ -10,6 +10,7 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import RoleProtectedRoute from "./components/RoleProtectedRoute";
 import ComplaintDetails from "./pages/citizen/ComplaintDetails";
 import CreateComplaint from "./pages/citizen/CreateComplaint";
+import EditComplaint from "./pages/citizen/EditComplaint";
 function App() {
   return (
     <Routes>
@@ -54,16 +55,22 @@ function App() {
       />
 
       <Route
-  path="/citizen/create-complaint"
-  element={
-    <RoleProtectedRoute allowedRoles={["citizen"]}>
-      <CreateComplaint />
-    </RoleProtectedRoute>
-  }
-/>
-      
+        path="/citizen/create-complaint"
+        element={
+          <RoleProtectedRoute allowedRoles={["citizen"]}>
+            <CreateComplaint />
+          </RoleProtectedRoute>
+        }
+      />
+      <Route
+        path="/complaints/:id/edit"
+        element={
+          <RoleProtectedRoute allowedRoles={["citizen"]}>
+            <EditComplaint />
+          </RoleProtectedRoute>
+        }
+      />
     </Routes>
-    
   );
 }
 

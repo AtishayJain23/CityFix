@@ -18,3 +18,21 @@ export const createComplaint = async (formData) => {
 
   return response.data;
 };
+
+export const updateComplaint = async (
+  id,
+  data
+) => {
+  return await api.patch(
+    `/complaints/${id}`,
+    data
+  );
+};
+
+export const deleteComplaint = async (
+  id
+) => {
+  return await api.delete(
+    `/complaints/${id}`
+  );
+};
