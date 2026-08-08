@@ -27,7 +27,7 @@ const login = async (req, res) => {
     );
 
     res.cookie("token", token, cookieOptions);
-
+    console.log("NODE_ENV:", process.env.NODE_ENV);
     res.status(200).json({
       success: true,
       data: user,
