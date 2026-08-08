@@ -3,8 +3,11 @@ const express = require("express");
 const authenticate = require("../middlewares/authenticate.middleware");
 const authorize = require("../middlewares/authorize.middleware");
 
-const { getAllComplaints } = require("../controllers/admin.controller");
-const { assignComplaint } = require("../controllers/admin.controller");
+const {
+  getAllComplaints,
+  assignComplaint,
+  getAllEmployees,
+} = require("../controllers/admin.controller");
 const { assignComplaintSchema } = require("../validators/admin.validator");
 const validate = require("../middlewares/validate.middleware");
 
@@ -18,5 +21,7 @@ router.patch(
   validate(assignComplaintSchema),
   assignComplaint,
 );
+
+router.get("/employees", authenticate, authorize("admin"), getAllEmployees);
 
 module.exports = router;

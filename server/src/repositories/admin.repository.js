@@ -20,9 +20,19 @@ const saveComplaint = async (complaint) => {
   return await complaint.save();
 };
 
+
+const findAllEmployees = async () => {
+  return await User.find(
+    {
+      role: "employee",
+    },
+    "name email role"
+  );
+};
 module.exports = {
   findAllComplaints,
   findEmployeeById,
   findComplaintById,
   saveComplaint,
+  findAllEmployees,
 };

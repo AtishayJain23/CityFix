@@ -30,7 +30,12 @@ const assignComplaint = async (complaintId, employeeId) => {
   return await adminRepository.saveComplaint(complaint);
 };
 
+const getAllEmployees = async () => {
+  return await adminRepository.findAllEmployees();
+};
+
 module.exports = {
   getAllComplaints,
   assignComplaint,
+  getAllEmployees,
 };

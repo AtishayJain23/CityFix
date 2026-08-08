@@ -36,9 +36,30 @@ const assignComplaint = async (req, res) => {
   }
 };
 
+const getAllEmployees = async (
+  req,
+  res
+) => {
+  try {
+    const employees =
+      await adminService.getAllEmployees();
+
+    res.status(200).json({
+      success: true,
+      data: employees,
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: error.message,
+    });
+  }
+};
+
 
 
 module.exports = {
   getAllComplaints,
   assignComplaint,
+  getAllEmployees,
 };
