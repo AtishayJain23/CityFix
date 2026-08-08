@@ -52,53 +52,59 @@ const Login = () => {
       setLoading(false);
     }
   };
-  return (
-    <div>
-      <h1>CityFix Login</h1>
+
+return (
+  <div className="min-h-screen bg-gray-100 flex items-center justify-center px-4">
+    <div className="bg-white w-full max-w-md rounded-2xl shadow-lg p-8">
+      <div className="text-center mb-8">
+        <h1 className="text-4xl font-bold text-blue-600">
+          CityFix
+        </h1>
+
+        <p className="text-gray-500 mt-2">
+          Smart Citizen Complaint Management System
+        </p>
+      </div>
 
       <form onSubmit={handleSubmit}>
-        <div>
-          <label>Email</label>
-          <br />
+        <Input
+          label="Email"
+          type="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
 
-          <Input
-            label="Email"
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
-        </div>
+        <Input
+          label="Password"
+          type="password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
 
-        <br />
-
-        <div>
-          <label>Password</label>
-          <br />
-
-          <Input
-            label="Password"
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-        </div>
-
-        <br />
-
-        <Button type="submit" disabled={loading}>
+        <Button
+          type="submit"
+          disabled={loading}
+          className="w-full mt-4"
+        >
           {loading ? "Logging in..." : "Login"}
         </Button>
-        <div className="mt-4 border-t pt-4 text-center">
-          <Link
-            to="/register"
-            className="text-blue-600 font-medium hover:underline"
-          >
-            Create New Account
-          </Link>
-        </div>
       </form>
+
+      <div className="mt-6 border-t pt-4 text-center">
+        <p className="text-gray-600">
+          Don't have an account?
+        </p>
+
+        <Link
+          to="/register"
+          className="text-blue-600 font-semibold hover:underline"
+        >
+          Create New Account
+        </Link>
+      </div>
     </div>
-  );
-};
+  </div>
+);
+}
 
 export default Login;
