@@ -4,6 +4,7 @@ import Button from "../components/ui/Button";
 import TextArea from "../components/ui/TextArea";
 import { useComplaint } from "../context/ComplaintContext";
 import { useNavigate } from "react-router-dom";
+import LocationPicker from "../components/complaint/LocationPicker";
 
 const ComplaintForm = () => {
   const [title, setTitle] = useState("");
@@ -11,6 +12,9 @@ const ComplaintForm = () => {
   const [category, setCategory] = useState("");
   const [photo, setPhoto] = useState(null);
   const [preview, setPreview] = useState("");
+  const [latitude, setLatitude] = useState(null);
+  const [longitude, setLongitude] = useState(null);
+  const [locationLoading, setLocationLoading] = useState(false);
 
   const { createComplaint } = useComplaint();
 
@@ -19,6 +23,11 @@ const ComplaintForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    if (!location) {
+      alert("Please select complaint location");
+      return;
+    }
+
     try {
       const formData = new FormData();
 
@@ -26,10 +35,8 @@ const ComplaintForm = () => {
       formData.append("description", description);
       formData.append("category", category);
 
-      // temporary values
-      formData.append("latitude", 28.6139);
-
-      formData.append("longitude", 77.209);
+      formData.append("latitude", location.lat);
+      formData.append("longitude", location.lng);
 
       if (photo) {
         formData.append("photos", photo);
@@ -52,6 +59,8 @@ const ComplaintForm = () => {
 
     setPreview(URL.createObjectURL(file));
   };
+
+  const [location, setLocation] = useState(null);
 
   return (
     <form onSubmit={handleSubmit}>
@@ -96,6 +105,22 @@ const ComplaintForm = () => {
 
         <input type="file" accept="image/*" onChange={handlePhotoChange} />
       </div>
+
+      <div className="mb-6">
+        <label className="block mb-2 font-medium">
+          Select Complaint Location
+        </label>
+
+        <LocationPicker position={location} setPosition={setLocation} />
+
+        {location && (
+          <p className="mt-2 text-green-600">Location selected successfully</p>
+        )}
+      </div>
+
+      {latitude && longitude && (
+        <p className="mt-2 text-green-600">Location selected successfully</p>
+      )}
 
       {preview && (
         <img
